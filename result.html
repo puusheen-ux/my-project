@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz Result</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Quiz Result</header>
+
+<div class="container">
+
+<div class="question-box">
+<p>Your final score is:</p>
+<h1 id="score"></h1>
+</div>
+
+<a href="quiz.html" class="btn green"> Retry Quiz</a>
+<a href="index.html" class="btn blue"> Home</a>
+
+</div>
+
+<script>
+let score = localStorage.getItem("score");
+let scoreElement = document.getElementById("score");
+
+scoreElement.innerHTML = score + " / 10";
+
+if(score >= 8){
+  scoreElement.style.color = "lime";
+}
+else if(score >= 5){
+  scoreElement.style.color = "gold";
+}
+else{
+  scoreElement.style.color = "red";
+}
+</script>
+
+</body>
+</html>

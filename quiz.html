@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Road Traffic Code – Quiz</header>
+
+<div id="counter" style="text-align:center; margin:10px; font-weight:bold;"></div>
+
+<div class="container">
+
+<div class="question-box" id="question"></div>
+
+<div style="text-align:center; margin-top:25px;">
+<img id="image">
+</div>
+
+<div class="options">
+  <div class="option" onclick="select(0)" id="op0"></div>
+  <div class="option" onclick="select(1)" id="op1"></div>
+  <div class="option" onclick="select(2)" id="op2"></div>
+  <div class="option" onclick="select(3)" id="op3"></div>
+</div>
+
+<button class="btn green" onclick="next()">Next</button>
+<button class="btn blue" onclick="previous()">Back</button>
+<button class="btn red" onclick="openExit()">Exit</button>
+
+</div>
+
+<div id="exitModal" class="modal">
+  <div class="modal-box">
+    <h2>Exit Quiz</h2>
+    <p>Are you sure you want to exit the quiz?<br>Your score will be lost.</p>
+    <div class="modal-actions">
+      <button class="btn blue small" onclick="closeExit()">Cancel</button>
+      <button class="btn red small" onclick="confirmExit()">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="nextModal" class="modal">
+  <div class="modal-box">
+    <h2>Answer Required</h2>
+    <p>You cannot go to the next question.<br>Please choose an answer first.</p>
+    <div class="modal-actions">
+      <button class="btn blue small" onclick="closeNext()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+let questions = [
+"What do traffic lights mean?",
+"What does this STOP sign mean?",
+"Who has priority in a roundabout?",
+"What does GIVE WAY mean?",
+"What does the danger sign warn you about?",
+"What does NO ENTRY mean?",
+"What does pedestrian crossing mean?",
+"What does speed limit 50 mean?",
+"What should you do at the end of the highway?",
+"What should you do when you see road works?"
+];
+
+let images = [
+"feu.jpg",
+"stop.jpg",
+"rond.jpg",
+"Periority.jpg",
+"danger.jpg",
+"interdit.jpg",
+"pieton.jpg",
+"50.jpg",
+"endOfTheHighway.jpg",
+"Roadworks.jpg"
+];
+
+let options = [
+["Go fast","Stop, Prepare, Go","Only stop","Only slow down"],
+["Slow down","Turn right","Come to a complete stop","Ignore"],
+["Cars outside","Pedestrians","Cars inside the roundabout","No one"],
+["Go fast","Always stop","Slow down and give priority","No rule"],
+["Parking area","Possible danger ahead","Hospital nearby","No cars"],
+["Parking allowed","No vehicles allowed","Slow down","Pedestrians"],
+["Cars first","Give priority to pedestrians","No crossing","Stop everyone"],
+["Minimum speed 50","Road closed","Maximum speed is 50 km/h","Danger"],
+["Speed up","Adjust speed and follow road signs","Stop immediately","No rule"],
+["Speed up","Ignore","Slow down and be careful","Road closed"]
+];
+
+let correct = [1,2,2,2,1,1,1,2,1,2];
+let q = 0, score = 0, selected = -1;
+
+load();
+
+function load(){
+  document.getElementById("question").innerHTML = questions[q];
+  document.getElementById("image").src = images[q];
+  document.getElementById("counter").innerHTML =
+  "Question " + (q+1) + " / " + questions.length;
+
+  for(let i=0;i<4;i++){
+    let op = document.getElementById("op"+i);
+    op.style.border = "2px solid #3b82f6";
+    op.style.background = "#020617";
+    op.innerHTML = options[q][i];
+  }
+  selected = -1;
+}
+
+function select(x){
+  selected = x;
+  for(let i=0;i<4;i++){
+    document.getElementById("op"+i).style.border = "2px solid #3b82f6";
+  }
+  document.getElementById("op"+x).style.border = "3px solid lime";
+}
+
+function next(){
+  if(selected === -1){
+    document.getElementById("nextModal").style.display = "flex";
+    return;
+  }
+
+  let correctOption = correct[q];
+  if(selected === correctOption){
+    document.getElementById("op"+selected).style.background = "green";
+    score++;
+  }else{
+    document.getElementById("op"+selected).style.background = "red";
+    document.getElementById("op"+correctOption).style.background = "green";
+  }
+  setTimeout(()=>{
+    q++;
+    if(q === questions.length){
+      localStorage.setItem("score", score);
+      window.location = "result.html";
+    }else{
+      load();
+    }
+  },1200);
+}
+
+function previous(){
+  if(q === 0) return;
+  q--;
+  load();
+}
+
+function openExit(){
+  document.getElementById("exitModal").style.display = "flex";
+}
+
+function closeExit(){
+  document.getElementById("exitModal").style.display = "none";
+}
+
+function confirmExit(){
+  localStorage.removeItem("score");
+  window.location = "index.html";
+}
+
+function closeNext(){
+  document.getElementById("nextModal").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

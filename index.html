@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Road Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Road Traffic Code Learning App</header>
+
+<div class="container">
+
+<a href="lessons.html" class="btn blue">Learn Road Signs + Pronunciation</a>
+<a href="quiz.html" class="btn green">Take the Quiz (10 Questions)</a>
+<a href="#" class="btn red" onclick="openExit()">Exit</a>
+
+</div>
+
+<div id="exitBox" class="exit-box">
+  <div class="exit-card">
+    <h2>Exit Application</h2>
+    <p>Are you sure you want to exit?</p>
+
+    <div class="exit-actions">
+      <button class="btn blue small" onclick="closeExit()">Cancel</button>
+      <button class="btn red small" onclick="confirmExit()">OK</button>
+    </div>
+  </div>
+</div>
+<script>
+function openExit(){
+  document.getElementById("exitBox").style.display = "flex";
+}
+
+function closeExit(){
+  document.getElementById("exitBox").style.display = "none";
+}
+
+function confirmExit(){
+  window.location.href = "about:blank";
+}
+</script>
+
+</body>
+</html>

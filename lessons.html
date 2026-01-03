@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lessons</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Road Traffic Code – Learning Lessons</header>
+
+<div class="container">
+
+<div class="card">
+<div class="lesson-title">🚦 Traffic Lights</div>
+<img src="feu.jpg">
+<p>Red means Stop, Yellow means Prepare, Green means Go.</p>
+<button class="sound" onclick="speak('Traffic Lights')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🛑 Stop Sign</div>
+<img src="stop.jpg">
+<p>You must come to a complete stop before continuing.</p>
+<button class="sound" onclick="speak('Stop Sign')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🌀 Roundabout</div>
+<img src="rond.jpg">
+<p>Vehicles already inside the roundabout have priority.</p>
+<button class="sound" onclick="speak('Roundabout')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🔻 Give Way</div>
+<img src="Periority.jpg">
+<p>Give way to other road users. Slow down and be ready to stop if necessary.</p>
+<button class="sound" onclick="speak('Give Way')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">⚠️ Danger Sign</div>
+<img src="danger.jpg">
+<p>This sign warns you of a possible danger ahead.</p>
+<button class="sound" onclick="speak('Danger Sign')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">⛔ No Entry</div>
+<img src="interdit.jpg">
+<p>No vehicles are allowed to enter this road.</p>
+<button class="sound" onclick="speak('No Entry')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🚸 Pedestrian Crossing</div>
+<img src="pieton.jpg">
+<p>Drivers must give priority to pedestrians.</p>
+<button class="sound" onclick="speak('Pedestrian Crossing')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🚗 Speed Limit</div>
+<img src="50.jpg">
+<p>The maximum allowed speed is 50 km/h.</p>
+<button class="sound" onclick="speak('Speed Limit 50')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🛣 End of Highway</div>
+<img src="endOfTheHighway.jpg">
+<p>This sign indicates the end of the highway. Adjust your speed and follow road signs.</p>
+<button class="sound" onclick="speak('End of Highway')">🔊 Pronounce</button>
+</div>
+
+<div class="card">
+<div class="lesson-title">🚧 Road Works</div>
+<img src="Roadworks.jpg">
+<p>Road works ahead. Slow down and proceed with caution.</p>
+<button class="sound" onclick="speak('Road Works')">🔊 Pronounce</button>
+</div>
+
+<a href="index.html" class="btn blue">⬅️ Back</a>
+
+</div>
+
+<script>
+function speak(text){
+   let speech = new SpeechSynthesisUtterance(text);
+   speech.lang = "en-US";
+   speech.rate = 0.9;
+   window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
